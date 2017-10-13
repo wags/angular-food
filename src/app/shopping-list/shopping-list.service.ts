@@ -17,4 +17,15 @@ export class ShoppingListService {
     this.ingredients.push(ingredient);
     this.ingredientsChanged.emit(this.ingredients.slice());
   }
+
+  addIngredients(ingredients: Ingredient[]) {
+    // This is bad because it will emit many events!
+    // for (let ingredient of ingredients) {
+    //   this.addIngredient(ingredient);
+    // }
+
+    // Use ES6 Spread syntax (...) instead!
+    this.ingredients.push(...ingredients);
+    this.ingredientsChanged.emit(this.ingredients.slice());
+  }
 }
